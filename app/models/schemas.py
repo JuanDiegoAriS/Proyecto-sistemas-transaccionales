@@ -40,3 +40,15 @@ class AprobarPropuesta(BaseModel):
     clienteID:int
 
     vendedorID:int
+
+    from pydantic import BaseModel
+
+
+class Cliente(BaseModel):
+
+    nombres:str
+    apellidos:str
+    email:str
+    telefono:str
+    empresa:str
+    cargo:str
