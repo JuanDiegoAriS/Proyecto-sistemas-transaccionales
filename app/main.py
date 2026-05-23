@@ -4,8 +4,8 @@ from fastapi.responses import HTMLResponse
 
 
 # importar rutas API
-from routes.clientes import router as clientes
-from routes.transacciones import router as transacciones
+from app.routes.clientes import router as clientes
+from app.routes.transacciones import router as transacciones
 
 
 app = FastAPI(

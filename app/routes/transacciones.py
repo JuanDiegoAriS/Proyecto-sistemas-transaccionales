@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
-from models.schemas import *
+from app.models.schemas import *
 
-from controllers.transacciones_controller import *
+from app.controllers.transacciones_controller import *
 
 
 router=APIRouter()

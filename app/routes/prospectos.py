@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from controllers.prospectos_controller import obtenerProspectos
+from app.controllers.prospectos_controller import obtenerProspectos
 
 
 router=APIRouter()

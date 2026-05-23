@@ -1,4 +1,4 @@
-from database.conexion import conectar
+from app.database.conexion import conectar
 
 
 
