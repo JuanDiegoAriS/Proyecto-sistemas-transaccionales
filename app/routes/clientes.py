@@ -1,7 +1,9 @@
 from fastapi import APIRouter
 
 from controllers.clientes_controller import obtenerClientes
+from models.schemas import Cliente
 
+from controllers.clientes_controller import *
 
 router=APIRouter()
 
