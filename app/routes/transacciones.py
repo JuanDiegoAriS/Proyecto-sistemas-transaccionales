@@ -28,6 +28,8 @@ data:RegistrarProspecto
 
         data.vendedorID
 
+        
+
     )
 
 
@@ -83,3 +85,4 @@ data:CrearPropuesta
         data.monto
 
     )
+

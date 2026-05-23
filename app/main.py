@@ -1,45 +1,130 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 
 
+# importar rutas API
 from routes.clientes import router as clientes
-
-from routes.prospectos import router as prospectos
-
 from routes.transacciones import router as transacciones
 
 
+app = FastAPI(
 
-app=FastAPI(
+    title="API Zimbra",
 
-title="API Zimbra",
+    description="Sistema transaccional",
 
-description="Sistema transaccional",
-
-version="1.0"
+    version="1.0"
 
 )
 
 
+# carpeta templates
+templates = Jinja2Templates(
 
+    directory="app/templates"
+
+)
+
+
+# incluir endpoints API
 app.include_router(clientes)
-
-app.include_router(prospectos)
 
 app.include_router(transacciones)
 
-app.include_router(clientes)
 
 
-@app.get("/")
+##################################
+# Página inicio
+##################################
 
-def inicio():
+@app.get(
 
-    return {
+"/",
 
-"mensaje":
+response_class=HTMLResponse
 
-"API Zimbra"
+)
+
+def inicio(
+
+request: Request
+
+):
+
+    return templates.TemplateResponse(
+
+        "index.html",
+
+        {
+
+            "request": request
+
+        }
+
+    )
 
 
 
-}
+##################################
+# Formulario registrar cliente
+##################################
+
+@app.get(
+
+"/cliente",
+
+response_class=HTMLResponse
+
+)
+
+def cliente(
+
+request: Request
+
+):
+
+    return templates.TemplateResponse(
+
+        "registrar_cliente.html",
+
+        {
+
+            "request": request
+
+        }
+
+    )
+
+
+
+
+##################################
+# Formulario propuesta
+##################################
+
+@app.get(
+
+"/propuesta",
+
+response_class=HTMLResponse
+
+)
+
+def propuesta(
+
+request: Request
+
+):
+
+    return templates.TemplateResponse(
+
+        "crear_propuesta.html",
+
+        {
+
+            "request": request
+
+        }
+
+    )
