@@ -41,7 +41,6 @@ class AprobarPropuesta(BaseModel):
 
     vendedorID:int
 
-    from pydantic import BaseModel
 
 
 class Cliente(BaseModel):
@@ -52,3 +51,10 @@ class Cliente(BaseModel):
     telefono:str
     empresa:str
     cargo:str
+class Propuesta(BaseModel):
+
+    clienteID:int
+
+    vendedorID:int
+
+    monto:float
