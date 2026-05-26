@@ -1,7 +1,8 @@
 from app.database.conexion import conectar
 
 
-def obtenerClientes():
+
+def obtenerAlertas():
 
     conexion=conectar()
 
@@ -10,18 +11,19 @@ def obtenerClientes():
 
     cursor.execute(
 
-        """
+"""
 
-        SELECT *
+SELECT *
 
-        FROM Clientes
+FROM Reportes_Alertas
 
-        """
+"""
 
-    )
+)
 
 
     datos=cursor.fetchall()
+
 
     conexion.close()
 

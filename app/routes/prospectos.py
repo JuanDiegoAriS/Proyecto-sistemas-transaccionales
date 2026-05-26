@@ -1,17 +1,13 @@
 from fastapi import APIRouter
 
-from app.controllers.prospectos_controller import obtenerProspectos
+from app.controllers.prospectos_controller import *
 
 
 router=APIRouter()
 
 
 
-@router.get(
-
-"/prospectos"
-
-)
+@router.get("/prospectos")
 
 def prospectos():
 

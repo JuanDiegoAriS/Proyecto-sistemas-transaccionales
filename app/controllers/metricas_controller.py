@@ -1,7 +1,13 @@
 from app.database.conexion import conectar
 
 
-def obtenerClientes():
+
+def score(
+
+nivel
+
+):
+
 
     conexion=conectar()
 
@@ -10,20 +16,29 @@ def obtenerClientes():
 
     cursor.execute(
 
-        """
+"""
 
-        SELECT *
+SELECT
 
-        FROM Clientes
+CalcularScore(
 
-        """
+%s
 
-    )
+)
+
+AS score
+
+""",
+
+(nivel,)
+
+)
 
 
-    datos=cursor.fetchall()
+    r=cursor.fetchone()
+
 
     conexion.close()
 
 
-    return datos
+    return r

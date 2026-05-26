@@ -2,7 +2,11 @@ from pydantic import BaseModel
 
 
 
-class RegistrarProspecto(BaseModel):
+class Prospecto(
+
+BaseModel
+
+):
 
     clienteID:int
 
@@ -11,7 +15,11 @@ class RegistrarProspecto(BaseModel):
 
 
 
-class ConvertirProspecto(BaseModel):
+class Conversion(
+
+BaseModel
+
+):
 
     prospectoID:int
 
@@ -22,7 +30,11 @@ class ConvertirProspecto(BaseModel):
 
 
 
-class CrearPropuesta(BaseModel):
+class Propuesta(
+
+BaseModel
+
+):
 
     clienteID:int
 
@@ -33,7 +45,11 @@ class CrearPropuesta(BaseModel):
 
 
 
-class AprobarPropuesta(BaseModel):
+class Aprobar(
+
+BaseModel
+
+):
 
     propuestaID:int
 
@@ -43,18 +59,15 @@ class AprobarPropuesta(BaseModel):
 
 
 
-class Cliente(BaseModel):
 
-    nombres:str
-    apellidos:str
-    email:str
-    telefono:str
-    empresa:str
-    cargo:str
-class Propuesta(BaseModel):
+class Interaccion(
+
+BaseModel
+
+):
 
     clienteID:int
 
     vendedorID:int
 
-    monto:float
+    nivel:str

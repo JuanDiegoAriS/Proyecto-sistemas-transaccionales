@@ -9,80 +9,60 @@ router=APIRouter()
 
 
 
-@router.post(
-
-"/registrarProspecto"
-
-)
+@router.post("/registrarProspecto")
 
 def registrar(
 
-data:RegistrarProspecto
+data:Prospecto
 
 ):
 
-
-    return registrarProspecto(
-
-        data.clienteID,
-
-        data.vendedorID
-
-        
-
-    )
+    return registrarProspecto(data)
 
 
 
-
-
-@router.post(
-
-"/convertirProspecto"
-
-)
+@router.post("/convertirProspecto")
 
 def convertir(
 
-data:ConvertirProspecto
+data:Conversion
 
 ):
 
-
-    return convertirProspecto(
-
-        data.prospectoID,
-
-        data.clienteID,
-
-        data.vendedorID
-
-    )
+    return convertirProspecto(data)
 
 
 
-
-
-@router.post(
-
-"/crearPropuesta"
-
-)
+@router.post("/crearPropuesta")
 
 def propuesta(
 
-data:CrearPropuesta
+data:Propuesta
 
 ):
 
+    return crearPropuesta(data)
 
-    return crearPropuesta(
 
-        data.clienteID,
 
-        data.vendedorID,
+@router.post("/aprobarPropuesta")
 
-        data.monto
+def aprobar(
 
-    )
+data:Aprobar
 
+):
+
+    return aprobarPropuesta(data)
+
+
+
+@router.post("/registrarInteraccion")
+
+def interaccion(
+
+data:Interaccion
+
+):
+
+    return registrarInteraccion(data)

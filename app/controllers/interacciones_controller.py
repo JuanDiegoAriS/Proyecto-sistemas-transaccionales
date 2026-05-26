@@ -1,7 +1,8 @@
 from app.database.conexion import conectar
 
 
-def obtenerClientes():
+
+def obtenerInteracciones():
 
     conexion=conectar()
 
@@ -10,18 +11,19 @@ def obtenerClientes():
 
     cursor.execute(
 
-        """
+"""
 
-        SELECT *
+SELECT *
 
-        FROM Clientes
+FROM Marketing_Interacciones
 
-        """
+"""
 
-    )
+)
 
 
     datos=cursor.fetchall()
+
 
     conexion.close()
 
