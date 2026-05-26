@@ -1,23 +1,27 @@
-from fastapi.middleware.cors import CORSMiddleware
+import React from "react";
+
+import ReactDOM from "react-dom/client";
+
+import App from "./App";
+
+import "./App.css";
 
 
 
-app.add_middleware(
+ReactDOM.createRoot(
 
-CORSMiddleware,
+document.getElementById(
 
-
-allow_origins=[
-
-"http://localhost:5173"
-
-],
-
-
-allow_credentials=True,
-
-allow_methods=["*"],
-
-allow_headers=["*"],
+"root"
 
 )
+
+).render(
+
+<React.StrictMode>
+
+<App />
+
+</React.StrictMode>
+
+);

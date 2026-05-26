@@ -13,7 +13,6 @@ import api
 
 from "../api/api";
 
-
 import Card
 
 from "../components/Card";
@@ -29,24 +28,21 @@ clientes,
 
 setClientes
 
-]
+]=
 
-=
+useState([])
 
-useState([]);
 
 
 const[
 
-prospectos,
+ventas,
 
-setProspectos
+setVentas
 
-]
+]=
 
-=
-
-useState([]);
+useState([])
 
 
 
@@ -77,7 +73,7 @@ r.data
 
 api.get(
 
-"/prospectos"
+"/ventas"
 
 )
 
@@ -85,7 +81,7 @@ api.get(
 
 r=>
 
-setProspectos(
+setVentas(
 
 r.data
 
@@ -115,6 +111,7 @@ Dashboard
 </h1>
 
 
+
 <div className="cards">
 
 
@@ -122,7 +119,25 @@ Dashboard
 
 titulo="Clientes"
 
-valor={clientes.length}
+valor={
+
+clientes.length
+
+}
+
+/>
+
+
+
+<Card
+
+titulo="Ventas"
+
+valor={
+
+ventas.length
+
+}
 
 />
 
@@ -132,13 +147,24 @@ valor={clientes.length}
 
 titulo="Prospectos"
 
-valor={prospectos.length}
+valor="24"
+
+/>
+
+
+
+<Card
+
+titulo="Conversion"
+
+valor="60%"
 
 />
 
 
 
 </div>
+
 
 
 </>

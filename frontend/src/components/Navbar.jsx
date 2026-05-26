@@ -1,6 +1,11 @@
-import {Link}
+import {
+
+Link
+
+}
 
 from "react-router-dom";
+
 
 
 export default function Navbar(){
@@ -8,58 +13,93 @@ export default function Navbar(){
 
 return(
 
-<nav className="navbar">
+<div className="navbar">
 
 
-<Link to="/">Dashboard</Link>
+<h1 className="logo">
+
+CRM
+
+</h1>
+
+
+
+<Link to="/">
+
+📊 Dashboard
+
+</Link>
+
 
 
 <Link to="/clientes">
 
-Clientes
+👥 Clientes
 
 </Link>
+
 
 
 <Link to="/prospectos">
 
-Prospectos
+🎯 Prospectos
 
 </Link>
+
 
 
 <Link to="/propuestas">
 
-Propuestas
+📄 Propuestas
 
 </Link>
+
 
 
 <Link to="/ventas">
 
-Ventas
+💰 Ventas
 
 </Link>
+
 
 
 <Link to="/alertas">
 
-Alertas
+🚨 Alertas
 
 </Link>
+
 
 
 <Link to="/metricas">
 
-Metricas
+📈 Métricas
 
 </Link>
 
 
 
-</nav>
+<Link to="/registrar">
+
+➕ Registrar
+
+</Link>
+
+
+
+<Link to="/crear">
+
+📝 Crear Propuesta
+
+</Link>
+
+
+
+</div>
 
 )
+
 
 
 }

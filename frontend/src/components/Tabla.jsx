@@ -1,7 +1,9 @@
 export default function Tabla({
 
 titulo,
+
 datos,
+
 columnas
 
 }){
@@ -9,7 +11,7 @@ columnas
 
 return(
 
-<div className="tabla-container">
+<>
 
 
 <h1>
@@ -117,7 +119,7 @@ fila[col]
 
 
 
-</div>
+</>
 
 )
 

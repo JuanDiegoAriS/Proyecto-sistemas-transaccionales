@@ -25,11 +25,11 @@ import Ventas from "./pages/Ventas";
 
 import Alertas from "./pages/Alertas";
 
+import Metricas from "./pages/Metricas";
+
 import Registrar from "./pages/RegistrarProspecto";
 
 import Propuesta from "./pages/CrearPropuesta";
-
-import Metricas from "./pages/Metricas";
 
 
 
@@ -38,10 +38,18 @@ function App(){
 
 return(
 
+
 <BrowserRouter>
 
 
+<div className="app">
+
+
 <Navbar/>
+
+
+
+<div className="content">
 
 
 <Routes>
@@ -51,79 +59,123 @@ return(
 
 path="/"
 
-element={<Dashboard/>}
+element={
+
+<Dashboard/>
+
+}
 
 />
+
 
 
 <Route
 
 path="/clientes"
 
-element={<Clientes/>}
+element={
+
+<Clientes/>
+
+}
 
 />
+
 
 
 <Route
 
 path="/prospectos"
 
-element={<Prospectos/>}
+element={
+
+<Prospectos/>
+
+}
 
 />
+
 
 
 <Route
 
 path="/propuestas"
 
-element={<Propuestas/>}
+element={
+
+<Propuestas/>
+
+}
 
 />
+
 
 
 <Route
 
 path="/ventas"
 
-element={<Ventas/>}
+element={
+
+<Ventas/>
+
+}
 
 />
+
 
 
 <Route
 
 path="/alertas"
 
-element={<Alertas/>}
+element={
+
+<Alertas/>
+
+}
 
 />
+
 
 
 <Route
 
 path="/registrar"
 
-element={<Registrar/>}
+element={
+
+<Registrar/>
+
+}
 
 />
+
 
 
 <Route
 
 path="/crear"
 
-element={<Propuesta/>}
+element={
+
+<Propuesta/>
+
+}
 
 />
+
 
 
 <Route
 
 path="/metricas"
 
-element={<Metricas/>}
+element={
+
+<Metricas/>
+
+}
 
 />
 
@@ -132,7 +184,17 @@ element={<Metricas/>}
 </Routes>
 
 
+
+</div>
+
+
+
+</div>
+
+
+
 </BrowserRouter>
+
 
 )
 
@@ -141,4 +203,5 @@ element={<Metricas/>}
 }
 
 
-export default App
+
+export default App;

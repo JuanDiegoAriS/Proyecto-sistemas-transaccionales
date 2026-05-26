@@ -9,14 +9,9 @@ useState
 from "react";
 
 
-import api
+import api from "../api/api";
 
-from "../api/api";
-
-
-import Tabla
-
-from "../components/Tabla";
+import Tabla from "../components/Tabla";
 
 
 
@@ -25,13 +20,11 @@ export default function Clientes(){
 
 const[
 
-clientes,
+datos,
 
-setClientes
+setDatos
 
-]
-
-=
+]=
 
 useState([])
 
@@ -52,7 +45,7 @@ api.get(
 
 r=>
 
-setClientes(
+setDatos(
 
 r.data
 
@@ -71,14 +64,13 @@ r.data
 
 return(
 
-
 <Tabla
 
 
 titulo="Clientes"
 
 
-datos={clientes}
+datos={datos}
 
 
 
@@ -88,15 +80,12 @@ columnas={[
 
 "nombres",
 
-"email",
-
-"empresa"
+"email"
 
 ]}
 
 
 />
-
 
 )
 
