@@ -9,7 +9,9 @@ useState
 from "react";
 
 
-import api from "../api/api"
+import api
+
+from "../api/api";
 
 
 
@@ -22,9 +24,7 @@ score,
 
 setScore
 
-]
-
-=
+]=
 
 useState();
 
@@ -53,6 +53,7 @@ r.data.score
 
 )
 
+
 },
 
 []
@@ -63,7 +64,15 @@ r.data.score
 
 return(
 
-<div>
+<>
+
+
+<h1>
+
+Metricas
+
+</h1>
+
 
 <h2>
 
@@ -73,8 +82,11 @@ Score:
 
 </h2>
 
-</div>
+
+
+</>
 
 )
+
 
 }

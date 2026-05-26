@@ -12,21 +12,35 @@ Arial;
 
 
 
-button{
+.navbar{
 
-padding:15px;
+display:flex;
 
-background:#2563eb;
+gap:20px;
 
-border:none;
+padding:20px;
+
+background:#1e293b;
+
+}
+
+
+
+.navbar a{
 
 color:white;
 
-border-radius:10px;
+text-decoration:none;
 
-margin:10px;
+}
 
-cursor:pointer;
+
+
+.cards{
+
+display:flex;
+
+gap:20px;
 
 }
 
@@ -36,8 +50,36 @@ cursor:pointer;
 
 background:#1e293b;
 
-padding:30px;
+padding:20px;
 
 border-radius:20px;
+
+}
+
+
+
+table{
+
+width:100%;
+
+background:white;
+
+color:black;
+
+}
+
+
+
+button{
+
+padding:10px;
+
+background:#2563eb;
+
+border:none;
+
+color:white;
+
+cursor:pointer;
 
 }

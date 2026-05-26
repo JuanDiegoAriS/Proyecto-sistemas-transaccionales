@@ -1,12 +1,45 @@
+import {
+
+useState
+
+}
+
+from "react";
+
+
 import api
 
-from "../services/api";
+from "../api/api";
 
 
-function CrearPropuesta(){
+
+export default function Propuesta(){
 
 
-const enviar=
+const[
+
+cliente,
+
+setCliente
+
+]=
+
+useState();
+
+
+const[
+
+monto,
+
+setMonto
+
+]=
+
+useState();
+
+
+
+const crear=
 
 async()=>{
 
@@ -17,21 +50,23 @@ await api.post(
 
 {
 
-clienteID:1,
+clienteID:
 
-vendedorID:1,
+cliente,
 
-monto:5000
+
+
+vendedorID:
+
+1,
+
+
+
+monto:
+
+monto
 
 }
-
-
-)
-
-
-alert(
-
-"Propuesta creada"
 
 )
 
@@ -45,21 +80,51 @@ return(
 <>
 
 
-<h1>
+<input
 
-Nueva propuesta
+placeholder="Cliente"
 
-</h1>
+onChange={
+
+e=>
+
+setCliente(
+
+e.target.value
+
+)
+
+}
+
+
+/>
+
+
+
+<input
+
+placeholder="Monto"
+
+onChange={
+
+e=>
+
+setMonto(
+
+e.target.value
+
+)
+
+}
+
+
+/>
 
 
 
 <button
 
-onClick={
-
-enviar
-
-}
+onClick={crear}
 
 >
 
@@ -68,13 +133,10 @@ Crear
 </button>
 
 
+
 </>
 
 )
 
 
 }
-
-
-
-export default CrearPropuesta;
