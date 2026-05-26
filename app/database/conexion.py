@@ -10,7 +10,7 @@ def conectar():
 
         user="root",
 
-        password="",
+        password="tu_contraseña",
 
         database="zimbra",
 
