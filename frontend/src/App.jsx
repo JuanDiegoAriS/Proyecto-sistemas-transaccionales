@@ -1,11 +1,29 @@
-import RegistrarCliente
+import {
 
-from "./pages/RegistrarCliente";
+BrowserRouter,
+
+Routes,
+
+Route
+
+}
+
+from "react-router-dom"
 
 
-import CrearPropuesta
+import Dashboard from "./pages/Dashboard"
 
-from "./pages/CrearPropuesta";
+import RegistrarProspecto from "./pages/RegistrarProspecto"
+
+import Convertir from "./pages/ConvertirProspecto"
+
+import Crear from "./pages/CrearPropuesta"
+
+import Aprobar from "./pages/AprobarPropuesta"
+
+import Interaccion from "./pages/RegistrarInteraccion"
+
+import Metricas from "./pages/Metricas"
 
 
 
@@ -14,25 +32,37 @@ function App(){
 
 return(
 
-<>
+<BrowserRouter>
 
 
-<RegistrarCliente/>
+<Routes>
 
 
-<hr/>
+<Route path="/" element={<Dashboard/>}/>
+
+<Route path="/prospecto" element={<RegistrarProspecto/>}/>
+
+<Route path="/convertir" element={<Convertir/>}/>
+
+<Route path="/propuesta" element={<Crear/>}/>
+
+<Route path="/aprobar" element={<Aprobar/>}/>
+
+<Route path="/interaccion" element={<Interaccion/>}/>
+
+<Route path="/metricas" element={<Metricas/>}/>
 
 
-<CrearPropuesta/>
+</Routes>
 
 
-</>
+</BrowserRouter>
 
 )
+
 
 
 }
 
 
-
-export default App;
+export default App
