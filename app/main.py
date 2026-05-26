@@ -1,130 +1,49 @@
-from fastapi import FastAPI, Request
-from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 
-# importar rutas API
 from app.routes.clientes import router as clientes
+from app.routes.prospectos import router as prospectos
+
+from app.routes.propuestas import router as propuestas
+from app.routes.ventas import router as ventas
+from app.routes.alertas import router as alertas
+from app.routes.interacciones import router as interacciones
+
 from app.routes.transacciones import router as transacciones
+from app.routes.metricas import router as metricas
 
 
-app = FastAPI(
+app = FastAPI()
 
-    title="API Zimbra",
 
-    description="Sistema transaccional",
 
-    version="1.0"
+app.add_middleware(
+
+    CORSMiddleware,
+
+    allow_origins=["*"],
+
+    allow_methods=["*"],
+
+    allow_headers=["*"]
 
 )
 
 
-# carpeta templates
-templates = Jinja2Templates(
 
-    directory="app/templates"
-
-)
-
-
-# incluir endpoints API
 app.include_router(clientes)
+
+app.include_router(prospectos)
+
+app.include_router(propuestas)
+
+app.include_router(ventas)
+
+app.include_router(alertas)
+
+app.include_router(interacciones)
 
 app.include_router(transacciones)
 
-
-
-##################################
-# Página inicio
-##################################
-
-@app.get(
-
-"/",
-
-response_class=HTMLResponse
-
-)
-
-def inicio(
-
-request: Request
-
-):
-
-    return templates.TemplateResponse(
-
-        "index.html",
-
-        {
-
-            "request": request
-
-        }
-
-    )
-
-
-
-##################################
-# Formulario registrar cliente
-##################################
-
-@app.get(
-
-"/cliente",
-
-response_class=HTMLResponse
-
-)
-
-def cliente(
-
-request: Request
-
-):
-
-    return templates.TemplateResponse(
-
-        "registrar_cliente.html",
-
-        {
-
-            "request": request
-
-        }
-
-    )
-
-
-
-
-##################################
-# Formulario propuesta
-##################################
-
-@app.get(
-
-"/propuesta",
-
-response_class=HTMLResponse
-
-)
-
-def propuesta(
-
-request: Request
-
-):
-
-    return templates.TemplateResponse(
-
-        "crear_propuesta.html",
-
-        {
-
-            "request": request
-
-        }
-
-    )
+app.include_router(metricas)

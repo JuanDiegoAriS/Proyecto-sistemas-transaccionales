@@ -1,9 +1,10 @@
 import pymysql
 
 
+
 def conectar():
 
-    conexion=pymysql.connect(
+    return pymysql.connect(
 
         host="localhost",
 
@@ -16,6 +17,3 @@ def conectar():
         cursorclass=pymysql.cursors.DictCursor
 
     )
-
-
-    return conexion

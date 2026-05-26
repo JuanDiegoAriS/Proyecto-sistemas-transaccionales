@@ -2,47 +2,6 @@ from pydantic import BaseModel
 
 
 
-class RegistrarProspecto(BaseModel):
-
-    clienteID:int
-
-    vendedorID:int
-
-
-
-
-class ConvertirProspecto(BaseModel):
-
-    prospectoID:int
-
-    clienteID:int
-
-    vendedorID:int
-
-
-
-
-class CrearPropuesta(BaseModel):
-
-    clienteID:int
-
-    vendedorID:int
-
-    monto:float
-
-
-
-
-class AprobarPropuesta(BaseModel):
-
-    propuestaID:int
-
-    clienteID:int
-
-    vendedorID:int
-
-
-
 class Cliente(BaseModel):
 
     nombres:str
@@ -51,10 +10,42 @@ class Cliente(BaseModel):
     telefono:str
     empresa:str
     cargo:str
+
+
+
+class Prospecto(BaseModel):
+
+    clienteID:int
+    vendedorID:int
+
+
+
+class Conversion(BaseModel):
+
+    prospectoID:int
+    clienteID:int
+    vendedorID:int
+
+
+
 class Propuesta(BaseModel):
 
     clienteID:int
+    vendedorID:int
+    monto:float
 
+
+
+class Aprobar(BaseModel):
+
+    propuestaID:int
+    clienteID:int
     vendedorID:int
 
-    monto:float
+
+
+class Interaccion(BaseModel):
+
+    clienteID:int
+    vendedorID:int
+    nivel:str
