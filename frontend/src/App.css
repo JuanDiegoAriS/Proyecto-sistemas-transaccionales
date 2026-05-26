@@ -1,58 +1,6 @@
-body{
+.tabla-container{
 
-background:#0f172a;
-
-color:white;
-
-font-family:
-
-Arial;
-
-}
-
-
-
-.navbar{
-
-display:flex;
-
-gap:20px;
-
-padding:20px;
-
-background:#1e293b;
-
-}
-
-
-
-.navbar a{
-
-color:white;
-
-text-decoration:none;
-
-}
-
-
-
-.cards{
-
-display:flex;
-
-gap:20px;
-
-}
-
-
-
-.card{
-
-background:#1e293b;
-
-padding:20px;
-
-border-radius:20px;
+padding:30px;
 
 }
 
@@ -62,24 +10,56 @@ table{
 
 width:100%;
 
+border-collapse:collapse;
+
 background:white;
 
 color:black;
+
+border-radius:15px;
+
+overflow:hidden;
 
 }
 
 
 
-button{
+th{
 
-padding:10px;
-
-background:#2563eb;
-
-border:none;
+background:#1e293b;
 
 color:white;
 
-cursor:pointer;
+padding:15px;
+
+}
+
+
+
+td{
+
+padding:12px;
+
+border-bottom:
+
+1px solid #ddd;
+
+}
+
+
+
+tr:hover{
+
+background:
+
+#f3f4f6;
+
+}
+
+
+
+h1{
+
+margin-bottom:20px;
 
 }

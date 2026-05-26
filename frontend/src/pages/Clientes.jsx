@@ -14,15 +14,20 @@ import api
 from "../api/api";
 
 
+import Tabla
+
+from "../components/Tabla";
+
+
 
 export default function Clientes(){
 
 
 const[
 
-datos,
+clientes,
 
-setDatos
+setClientes
 
 ]
 
@@ -47,7 +52,7 @@ api.get(
 
 r=>
 
-setDatos(
+setClientes(
 
 r.data
 
@@ -66,99 +71,32 @@ r.data
 
 return(
 
-<>
+
+<Tabla
 
 
-<h1>
-
-Clientes
-
-</h1>
+titulo="Clientes"
 
 
-
-<table>
-
-
-<thead>
-
-<tr>
-
-<th>ID</th>
-
-<th>Nombre</th>
-
-<th>Email</th>
-
-</tr>
-
-
-</thead>
+datos={clientes}
 
 
 
-<tbody>
+columnas={[
+
+"clienteID",
+
+"nombres",
+
+"email",
+
+"empresa"
+
+]}
 
 
-{
+/>
 
-datos.map(
-
-c=>
-
-<tr>
-
-
-<td>
-
-{
-
-c.clienteID
-
-}
-
-</td>
-
-
-<td>
-
-{
-
-c.nombres
-
-}
-
-</td>
-
-
-<td>
-
-{
-
-c.email
-
-}
-
-</td>
-
-
-
-</tr>
-
-)
-
-
-}
-
-
-</tbody>
-
-
-
-</table>
-
-
-</>
 
 )
 
