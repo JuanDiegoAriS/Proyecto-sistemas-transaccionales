@@ -1,10 +1,23 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+from fastapi.middleware.cors import CORSMiddleware
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+
+
+app.add_middleware(
+
+CORSMiddleware,
+
+
+allow_origins=[
+
+"http://localhost:5173"
+
+],
+
+
+allow_credentials=True,
+
+allow_methods=["*"],
+
+allow_headers=["*"],
+
 )
