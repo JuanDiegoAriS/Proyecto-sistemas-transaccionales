@@ -1,23 +1,23 @@
 from app.database.conexion import conectar
 
 
-
-
 def obtenerClientes():
 
-    conexion=conectar()
+    conexion = conectar()
 
-    cursor=conexion.cursor()
-
-
-    cursor.execute(
-
-        "SELECT * FROM Clientes"
-
-    )
+    cursor = conexion.cursor()
 
 
-    datos=cursor.fetchall()
+    cursor.execute("""
+
+        SELECT *
+
+        FROM Clientes
+
+    """)
+
+
+    datos = cursor.fetchall()
 
 
     conexion.close()

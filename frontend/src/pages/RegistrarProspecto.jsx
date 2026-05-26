@@ -13,7 +13,7 @@ from "../api/api";
 
 
 
-export default function Propuesta(){
+export default function Registrar(){
 
 
 const[
@@ -29,9 +29,9 @@ useState();
 
 const[
 
-monto,
+vendedor,
 
-setMonto
+setVendedor
 
 ]=
 
@@ -39,14 +39,14 @@ useState();
 
 
 
-const crear=
+const guardar=
 
 async()=>{
 
 
 await api.post(
 
-"/crearPropuesta",
+"/registrarProspecto",
 
 {
 
@@ -58,15 +58,17 @@ cliente,
 
 vendedorID:
 
-1,
-
-
-
-monto:
-
-monto
+vendedor
 
 }
+
+)
+
+
+
+alert(
+
+"Guardado"
 
 )
 
@@ -78,6 +80,14 @@ monto
 return(
 
 <>
+
+
+<h1>
+
+Registrar Prospecto
+
+</h1>
+
 
 
 <input
@@ -96,20 +106,19 @@ e.target.value
 
 }
 
-
 />
 
 
 
 <input
 
-placeholder="Monto"
+placeholder="Vendedor"
 
 onChange={
 
 e=>
 
-setMonto(
+setVendedor(
 
 e.target.value
 
@@ -117,18 +126,13 @@ e.target.value
 
 }
 
-
 />
 
 
 
-<button
+<button onClick={guardar}>
 
-onClick={crear}
-
->
-
-Crear
+Guardar
 
 </button>
 
