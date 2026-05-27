@@ -4,12 +4,13 @@ BrowserRouter,
 
 Routes,
 
-Route
+Route,
 
 }
 
 from "react-router-dom";
 
+import Login from "./pages/Login";
 
 import Navbar from "./components/Navbar";
 
@@ -67,7 +68,17 @@ element={
 
 />
 
+<Route
 
+path="/"
+
+element={
+
+<Login/>
+
+}
+
+/>
 
 <Route
 
