@@ -9,7 +9,7 @@ from "react";
 
 import api
 
-from "../api/api";
+from "../api";
 
 
 
