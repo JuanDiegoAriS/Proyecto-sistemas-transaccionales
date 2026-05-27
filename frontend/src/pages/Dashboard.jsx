@@ -1,175 +1,523 @@
-import {
-
-useEffect,
-
-useState
-
-}
-
-from "react";
-
-
-import api
-
-from "../api";
-
-import Card
-
-from "../components/Card";
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function Dashboard(){
 
+    const navigate = useNavigate();
 
-const[
+    const rol = localStorage.getItem(
+        "rol"
+    );
 
-clientes,
 
-setClientes
+    const cerrarSesion = ()=>{
 
-]=
+        localStorage.clear();
 
-useState([])
+        navigate("/");
 
+    };
 
 
-const[
+    return(
 
-ventas,
+        <div
+            style={{
+                padding:"40px",
+                fontFamily:"Arial",
+                color:"white",
+                background:"#0f172a",
+                minHeight:"100vh"
+            }}
+        >
 
-setVentas
+            {/* ================================= */}
+            {/* TITULO */}
+            {/* ================================= */}
 
-]=
+            <h1
+                style={{
+                    textAlign:"center",
+                    fontSize:"60px"
+                }}
+            >
 
-useState([])
+                CRM
 
+            </h1>
 
 
-useEffect(
+            <hr/>
 
-()=>{
 
+            <h1
+                style={{
+                    textAlign:"center"
+                }}
+            >
 
-api.get(
+                Dashboard Zimbra
 
-"/clientes"
+            </h1>
 
-)
 
-.then(
+            <h2
+                style={{
+                    textAlign:"center"
+                }}
+            >
 
-r=>
+                Bienvenido
 
-setClientes(
+            </h2>
 
-r.data
 
-)
+            <h3
+                style={{
+                    textAlign:"center"
+                }}
+            >
 
-)
+                Rol:
 
+                {rol}
 
+            </h3>
 
-api.get(
 
-"/ventas"
+            <br/>
 
-)
 
-.then(
+            {/* ================================= */}
+            {/* ADMIN */}
+            {/* ================================= */}
 
-r=>
+            {
+                rol==="admin" && (
 
-setVentas(
+                    <div>
 
-r.data
+                        <h2>
 
-)
+                            Panel Administrador
 
-)
+                        </h2>
 
 
+                        <button
 
-},
+                            onClick={()=>
 
-[]
+                                navigate(
 
-)
+                                    "/clientes"
 
+                                )
 
+                            }
 
-return(
+                        >
 
-<>
+                            Clientes
 
+                        </button>
 
-<h1>
 
-Dashboard
+                        <br/>
+                        <br/>
 
-</h1>
 
+                        <button
 
+                            onClick={()=>
 
-<div className="cards">
+                                navigate(
 
+                                    "/prospectos"
 
-<Card
+                                )
 
-titulo="Clientes"
+                            }
 
-valor={
+                        >
 
-clientes.length
+                            Prospectos
 
-}
+                        </button>
 
-/>
 
+                        <br/>
+                        <br/>
 
 
-<Card
+                        <button
 
-titulo="Ventas"
+                            onClick={()=>
 
-valor={
+                                navigate(
 
-ventas.length
+                                    "/propuestas"
 
-}
+                                )
 
-/>
+                            }
 
+                        >
 
+                            Propuestas
 
-<Card
+                        </button>
 
-titulo="Prospectos"
 
-valor="24"
+                        <br/>
+                        <br/>
 
-/>
 
+                        <button
 
+                            onClick={()=>
 
-<Card
+                                navigate(
 
-titulo="Conversion"
+                                    "/ventas"
 
-valor="60%"
+                                )
 
-/>
+                            }
 
+                        >
 
+                            Ventas
 
-</div>
+                        </button>
 
 
+                        <br/>
+                        <br/>
 
-</>
 
-)
+                        <button
 
+                            onClick={()=>
+
+                                navigate(
+
+                                    "/alertas"
+
+                                )
+
+                            }
+
+                        >
+
+                            Alertas
+
+                        </button>
+
+
+                        <br/>
+                        <br/>
+
+
+                        <button
+
+                            onClick={()=>
+
+                                navigate(
+
+                                    "/metricas"
+
+                                )
+
+                            }
+
+                        >
+
+                            Métricas
+
+                        </button>
+
+
+                        <br/>
+                        <br/>
+
+
+                        <button
+
+                            onClick={()=>
+
+                                navigate(
+
+                                    "/registrar"
+
+                                )
+
+                            }
+
+                        >
+
+                            Registrar Prospecto
+
+                        </button>
+
+
+                        <br/>
+                        <br/>
+
+
+                        <button
+
+                            onClick={()=>
+
+                                navigate(
+
+                                    "/crear-propuesta"
+
+                                )
+
+                            }
+
+                        >
+
+                            Crear Propuesta
+
+                        </button>
+
+                    </div>
+
+                )
+            }
+
+
+            {/* ================================= */}
+            {/* MARKETING */}
+            {/* ================================= */}
+
+            {
+                rol==="marketing" && (
+
+                    <div>
+
+                        <h2>
+
+                            Panel Marketing
+
+                        </h2>
+
+
+                        <button
+
+                            onClick={()=>
+
+                                navigate(
+
+                                    "/prospectos"
+
+                                )
+
+                            }
+
+                        >
+
+                            Prospectos
+
+                        </button>
+
+
+                        <br/>
+                        <br/>
+
+
+                        <button
+
+                            onClick={()=>
+
+                                navigate(
+
+                                    "/metricas"
+
+                                )
+
+                            }
+
+                        >
+
+                            Métricas
+
+                        </button>
+
+
+                        <br/>
+                        <br/>
+
+
+                        <button
+
+                            onClick={()=>
+
+                                navigate(
+
+                                    "/alertas"
+
+                                )
+
+                            }
+
+                        >
+
+                            Alertas
+
+                        </button>
+
+                    </div>
+
+                )
+            }
+
+
+            {/* ================================= */}
+            {/* VENDEDOR */}
+            {/* ================================= */}
+
+            {
+                rol==="vendedor" && (
+
+                    <div>
+
+                        <h2>
+
+                            Panel Vendedor
+
+                        </h2>
+
+
+                        <button
+
+                            onClick={()=>
+
+                                navigate(
+
+                                    "/registrar"
+
+                                )
+
+                            }
+
+                        >
+
+                            Registrar Prospecto
+
+                        </button>
+
+
+                        <br/>
+                        <br/>
+
+
+                        <button
+
+                            onClick={()=>
+
+                                navigate(
+
+                                    "/crear-propuesta"
+
+                                )
+
+                            }
+
+                        >
+
+                            Crear Propuesta
+
+                        </button>
+
+
+                        <br/>
+                        <br/>
+
+
+                        <button
+
+                            onClick={()=>
+
+                                navigate(
+
+                                    "/ventas"
+
+                                )
+
+                            }
+
+                        >
+
+                            Ventas
+
+                        </button>
+
+
+                        <br/>
+                        <br/>
+
+
+                        <button
+
+                            onClick={()=>
+
+                                navigate(
+
+                                    "/alertas"
+
+                                )
+
+                            }
+
+                        >
+
+                            Alertas
+
+                        </button>
+
+                    </div>
+
+                )
+            }
+
+
+            <br/>
+            <br/>
+
+
+            {/* ================================= */}
+            {/* LOGOUT */}
+            {/* ================================= */}
+
+            <button
+
+                onClick={cerrarSesion}
+
+                style={{
+
+                    background:"red",
+
+                    color:"white",
+
+                    padding:"10px",
+
+                    border:"none",
+
+                    cursor:"pointer"
+
+                }}
+
+            >
+
+                Cerrar Sesión
+
+            </button>
+
+        </div>
+
+    );
 
 }

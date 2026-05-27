@@ -49,3 +49,8 @@ class Interaccion(BaseModel):
     clienteID:int
     vendedorID:int
     nivel:str
+
+class Login(BaseModel):
+
+    email:str
+    password:str

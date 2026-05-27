@@ -10,7 +10,7 @@ from app.routes.propuestas import router as propuestas
 from app.routes.ventas import router as ventas
 from app.routes.alertas import router as alertas
 from app.routes.interacciones import router as interacciones
-
+from app.routes.login import router as login_router
 
 # Procedimientos
 from app.routes.transacciones import router as transacciones
@@ -21,6 +21,33 @@ from app.routes.metricas import router as metricas
 
 app = FastAPI()
 
+from fastapi import FastAPI
+
+from fastapi.middleware.cors import CORSMiddleware
+
+
+app = FastAPI()
+
+
+app.add_middleware(
+
+    CORSMiddleware,
+
+    allow_origins=[
+
+        "http://localhost:5173",
+
+        "http://127.0.0.1:5173"
+
+    ],
+
+    allow_credentials=True,
+
+    allow_methods=["*"],
+
+    allow_headers=["*"]
+
+)
 
 @app.exception_handler(
     RequestValidationError
@@ -48,7 +75,9 @@ app = FastAPI(
 
 )
 
-
+app.include_router(
+    login_router
+)
 
 app.add_middleware(
 
