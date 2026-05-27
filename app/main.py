@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-
 from fastapi.middleware.cors import CORSMiddleware
 
 
+# Rutas consultas
 from app.routes.clientes import router as clientes
 from app.routes.prospectos import router as prospectos
 from app.routes.propuestas import router as propuestas
@@ -10,16 +10,21 @@ from app.routes.ventas import router as ventas
 from app.routes.alertas import router as alertas
 from app.routes.interacciones import router as interacciones
 
+
+# Procedimientos
 from app.routes.transacciones import router as transacciones
+
+
+# UDF
 from app.routes.metricas import router as metricas
 
 
 
-app=FastAPI(
+app = FastAPI(
 
-title="API Zimbra",
+    title="CRM Zimbra",
 
-version="1.0"
+    version="1.0"
 
 )
 
@@ -27,17 +32,23 @@ version="1.0"
 
 app.add_middleware(
 
-CORSMiddleware,
+    CORSMiddleware,
 
-allow_origins=["*"],
+    allow_origins=["*"],
 
-allow_methods=["*"],
+    allow_credentials=True,
 
-allow_headers=["*"]
+    allow_methods=["*"],
+
+    allow_headers=["*"]
 
 )
 
 
+
+###################################
+# CONSULTAS
+###################################
 
 app.include_router(clientes)
 
@@ -51,9 +62,29 @@ app.include_router(alertas)
 
 app.include_router(interacciones)
 
-app.include_router(transacciones)
 
-app.include_router(metricas)
+
+###################################
+# PROCEDIMIENTOS
+###################################
+
+app.include_router(
+
+    transacciones
+
+)
+
+
+
+###################################
+# UDF
+###################################
+
+app.include_router(
+
+    metricas
+
+)
 
 
 
@@ -65,6 +96,6 @@ def inicio():
 
         "mensaje":
 
-        "API Zimbra funcionando"
+        "API CRM funcionando"
 
     }

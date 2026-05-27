@@ -12,11 +12,12 @@ return(
 <div className="card">
 
 
-<h3>
+<p>
 
 {titulo}
 
-</h3>
+</p>
+
 
 
 <h1>
@@ -26,8 +27,10 @@ return(
 </h1>
 
 
+
 </div>
 
 )
+
 
 }

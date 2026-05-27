@@ -13,7 +13,7 @@ router=APIRouter()
 
 def registrar(
 
-data:Prospecto
+data: Prospecto
 
 ):
 
@@ -25,7 +25,7 @@ data:Prospecto
 
 def convertir(
 
-data:Conversion
+data: Conversion
 
 ):
 
@@ -37,7 +37,7 @@ data:Conversion
 
 def propuesta(
 
-data:Propuesta
+data: Propuesta
 
 ):
 
@@ -49,7 +49,7 @@ data:Propuesta
 
 def aprobar(
 
-data:Aprobar
+data: Aprobar
 
 ):
 
@@ -61,7 +61,7 @@ data:Aprobar
 
 def interaccion(
 
-data:Interaccion
+data: Interaccion
 
 ):
 

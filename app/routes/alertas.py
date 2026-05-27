@@ -1,13 +1,17 @@
 from fastapi import APIRouter
 
-from app.controllers.alertas_controller import *
+from app.controllers.alertas_controller import obtenerAlertas
 
 
-router=APIRouter()
+router = APIRouter()
 
 
 
-@router.get("/alertas")
+@router.get(
+
+"/alertas"
+
+)
 
 def alertas():
 

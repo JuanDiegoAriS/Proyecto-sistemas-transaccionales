@@ -1,13 +1,17 @@
 from fastapi import APIRouter
 
-from app.controllers.interacciones_controller import *
+from app.controllers.interacciones_controller import obtenerInteracciones
 
 
-router=APIRouter()
+router = APIRouter()
 
 
 
-@router.get("/interacciones")
+@router.get(
+
+"/interacciones"
+
+)
 
 def interacciones():
 

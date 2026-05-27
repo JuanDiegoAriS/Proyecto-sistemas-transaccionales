@@ -1,7 +1,5 @@
 import {
 
-useEffect,
-
 useState
 
 }
@@ -26,24 +24,24 @@ setScore
 
 ]=
 
-useState();
+useState()
 
 
 
-useEffect(
+const calcular=
 
-()=>{
+async()=>{
 
 
-api.get(
+const r=
+
+await api.get(
 
 "/score/ALTO"
 
 )
 
-.then(
 
-r=>
 
 setScore(
 
@@ -51,14 +49,7 @@ r.data.score
 
 )
 
-)
-
-
-},
-
-[]
-
-)
+}
 
 
 
@@ -67,20 +58,23 @@ return(
 <>
 
 
+<button
+
+onClick={calcular}
+
+>
+
+Calcular Score
+
+</button>
+
+
+
 <h1>
-
-Metricas
-
-</h1>
-
-
-<h2>
-
-Score:
 
 {score}
 
-</h2>
+</h1>
 
 
 

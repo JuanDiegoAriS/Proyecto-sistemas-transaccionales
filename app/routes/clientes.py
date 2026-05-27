@@ -1,13 +1,17 @@
 from fastapi import APIRouter
 
-from app.controllers.clientes_controller import *
+from app.controllers.clientes_controller import obtenerClientes
 
 
-router=APIRouter()
+router = APIRouter()
 
 
 
-@router.get("/clientes")
+@router.get(
+
+"/clientes"
+
+)
 
 def clientes():
 

@@ -1,13 +1,17 @@
 from fastapi import APIRouter
 
-from app.controllers.ventas_controller import *
+from app.controllers.ventas_controller import obtenerVentas
 
 
-router=APIRouter()
+router = APIRouter()
 
 
 
-@router.get("/ventas")
+@router.get(
+
+"/ventas"
+
+)
 
 def ventas():
 

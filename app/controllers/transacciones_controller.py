@@ -1,209 +1,220 @@
 from app.database.conexion import conectar
 
 
+def ejecutar(sql, params):
 
-def ejecutar(
+    conexion = conectar()
 
-sql,
+    cursor = conexion.cursor()
 
-params
+    try:
 
-):
+        cursor.execute(
 
-    conexion=conectar()
+            sql,
 
-    cursor=conexion.cursor()
+            params
+
+        )
+
+        conexion.commit()
+
+        return {
+
+            "mensaje":
+
+            "Operacion exitosa"
+
+        }
+
+    except Exception as e:
+
+        conexion.rollback()
+
+        return {
+
+            "error":
+
+            str(e)
+
+        }
+
+    finally:
+
+        conexion.close()
 
 
-    cursor.execute(
 
-sql,
-
-params
-
-)
-
-
-    conexion.commit()
-
-    conexion.close()
-
-
+####################################
+# REGISTRAR PROSPECTO
+####################################
 
 def registrarProspecto(data):
 
+    return ejecutar(
 
-    ejecutar(
+        """
 
-"""
+        CALL RegistrarProspecto(
 
-CALL RegistrarProspecto(
+            %s,
 
-%s,
+            %s
 
-%s
+        )
 
-)
+        """,
 
-""",
+        (
 
-(
+            data.clienteID,
 
-data.clienteID,
+            data.vendedorID
 
-data.vendedorID
+        )
 
-)
-
-)
-
-
-    return {"mensaje":"Prospecto registrado"}
+    )
 
 
 
+####################################
+# CONVERTIR PROSPECTO
+####################################
 
 def convertirProspecto(data):
 
+    return ejecutar(
 
-    ejecutar(
+        """
 
-"""
+        CALL ConvertirProspecto(
 
-CALL ConvertirProspecto(
+            %s,
 
-%s,
+            %s,
 
-%s,
+            %s
 
-%s
+        )
 
-)
+        """,
 
-""",
+        (
 
-(
+            data.prospectoID,
 
-data.prospectoID,
+            data.clienteID,
 
-data.clienteID,
+            data.vendedorID
 
-data.vendedorID
+        )
 
-)
-
-)
-
-
-    return {"mensaje":"Convertido"}
+    )
 
 
 
+####################################
+# CREAR PROPUESTA
+####################################
 
 def crearPropuesta(data):
 
+    return ejecutar(
 
-    ejecutar(
+        """
 
-"""
+        CALL CrearPropuesta(
 
-CALL CrearPropuesta(
+            %s,
 
-%s,
+            %s,
 
-%s,
+            %s
 
-%s
+        )
 
-)
+        """,
 
-""",
+        (
 
-(
+            data.clienteID,
 
-data.clienteID,
+            data.vendedorID,
 
-data.vendedorID,
+            data.monto
 
-data.monto
+        )
 
-)
-
-)
-
-
-    return {"mensaje":"Propuesta creada"}
+    )
 
 
 
+####################################
+# APROBAR PROPUESTA
+####################################
 
 def aprobarPropuesta(data):
 
+    return ejecutar(
 
-    ejecutar(
+        """
 
-"""
+        CALL AprobarPropuesta(
 
-CALL AprobarPropuesta(
+            %s,
 
-%s,
+            %s,
 
-%s,
+            %s
 
-%s
+        )
 
-)
+        """,
 
-""",
+        (
 
-(
+            data.propuestaID,
 
-data.propuestaID,
+            data.clienteID,
 
-data.clienteID,
+            data.vendedorID
 
-data.vendedorID
+        )
 
-)
-
-)
-
-
-    return {"mensaje":"Venta aprobada"}
+    )
 
 
 
+####################################
+# REGISTRAR INTERACCION
+####################################
 
 def registrarInteraccion(data):
 
+    return ejecutar(
 
-    ejecutar(
+        """
 
-"""
+        CALL RegistrarInteraccion(
 
-CALL RegistrarInteraccion(
+            %s,
 
-%s,
+            %s,
 
-%s,
+            %s
 
-%s
+        )
 
-)
+        """,
 
-""",
+        (
 
-(
+            data.clienteID,
 
-data.clienteID,
+            data.vendedorID,
 
-data.vendedorID,
+            data.nivel
 
-data.nivel
+        )
 
-)
-
-)
-
-
-    return {"mensaje":"Interaccion registrada"}
+    )

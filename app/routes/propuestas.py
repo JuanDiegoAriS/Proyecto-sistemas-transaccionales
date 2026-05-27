@@ -1,13 +1,17 @@
 from fastapi import APIRouter
 
-from app.controllers.propuestas_controller import *
+from app.controllers.propuestas_controller import obtenerPropuestas
 
 
-router=APIRouter()
+router = APIRouter()
 
 
 
-@router.get("/propuestas")
+@router.get(
+
+"/propuestas"
+
+)
 
 def propuestas():
 

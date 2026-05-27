@@ -1,6 +1,7 @@
 import pymysql
 
 
+
 def conectar():
 
     return pymysql.connect(
