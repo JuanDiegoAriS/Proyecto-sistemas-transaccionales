@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 
 # Rutas consultas
 from app.routes.clientes import router as clientes
@@ -18,8 +19,27 @@ from app.routes.transacciones import router as transacciones
 # UDF
 from app.routes.metricas import router as metricas
 
+app = FastAPI()
 
 
+@app.exception_handler(
+    RequestValidationError
+)
+async def validation_exception_handler(
+    request,
+    exc
+):
+
+    return JSONResponse(
+        status_code=422,
+        content={
+            "mensaje":
+            "Datos inválidos",
+
+            "errores":
+            exc.errors()
+        }
+)
 app = FastAPI(
 
     title="CRM Zimbra",

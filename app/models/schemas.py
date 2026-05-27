@@ -13,10 +13,11 @@ class Cliente(BaseModel):
 
 
 
-class Prospecto(BaseModel):
+from pydantic import BaseModel, Field
 
-    clienteID:int
-    vendedorID:int
+class Prospecto(BaseModel):
+    clienteID: int = Field(..., gt=0)
+    vendedorID: int = Field(..., gt=0)
 
 
 
@@ -29,10 +30,9 @@ class Conversion(BaseModel):
 
 
 class Propuesta(BaseModel):
-
-    clienteID:int
-    vendedorID:int
-    monto:float
+    clienteID: int
+    vendedorID: int
+    monto: float = Field(..., gt=0)
 
 
 
