@@ -30,23 +30,13 @@ def obtenerClientesDisponibles():
 
     cursor.execute("""
 
-        SELECT *
+    SELECT *
 
-        FROM Clientes c
+    FROM Clientes
 
-        WHERE c.estadoCliente='Nuevo'
+    WHERE estadoCliente='Nuevo'
 
-        AND NOT EXISTS(
-
-            SELECT 1
-
-            FROM Prospectos p
-
-            WHERE p.clienteID = c.clienteID
-
-        )
-
-        ORDER BY c.clienteID
+    ORDER BY clienteID
 
     """)
 
