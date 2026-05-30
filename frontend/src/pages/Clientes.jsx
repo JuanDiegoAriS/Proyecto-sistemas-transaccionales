@@ -1,96 +1,63 @@
 import {
-
-useEffect,
-
-useState
-
+    useEffect,
+    useState
 }
-
 from "react";
-
 
 import api from "../api";
 
-
 import Tabla
-
 from "../components/Tabla";
 
+export default function Clientes() {
 
+    const [
+        datos,
+        setDatos
+    ] = useState([]);
 
-export default function Clientes(){
+    useEffect(() => {
 
+        api.get("/clientes")
+            .then(r =>
+                setDatos(r.data)
+            )
+            .catch(console.error);
 
-const[
+    }, []);
 
-datos,
+    return (
 
-setDatos
+        <Tabla
 
-]=
+            titulo="Clientes"
 
-useState([])
+            datos={datos}
 
+            columnas={[
 
+                "clienteID",
 
-useEffect(
+                "nombres",
 
-()=>{
+                "apellidos",
 
+                "email",
 
-api.get(
+                "telefono",
 
-"/clientes"
+                "empresa",
 
-)
+                "cargo",
 
-.then(
+                "estadoCliente",
 
-r=>
+                "clientePago"
 
-setDatos(
+            ]}
 
-r.data
+        />
 
-)
-
-)
-
-
-},
-
-[]
-
-)
-
-
-
-return(
-
-<Tabla
-
-
-titulo="Clientes"
-
-
-datos={datos}
-
-
-
-columnas={[
-
-"clienteID",
-
-"nombres",
-
-"email"
-
-]}
-
-
-/>
-
-)
-
+    );
 
 }
