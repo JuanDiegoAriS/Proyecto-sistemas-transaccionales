@@ -87,6 +87,10 @@ columnas={[
 
 "propuestaID",
 
+"monto",
+
+"estado",
+
 "fechaVenta"
 
 ]}

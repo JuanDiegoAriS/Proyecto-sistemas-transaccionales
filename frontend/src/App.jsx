@@ -10,11 +10,8 @@ Route
 
 from "react-router-dom";
 
-
 import Login from "./pages/Login";
-
 import Dashboard from "./pages/Dashboard";
-
 import CambiarPassword from "./pages/CambiarPassword";
 
 import RutaProtegida from "./components/RutaProtegida";
@@ -25,31 +22,22 @@ import RutaProtegida from "./components/RutaProtegida";
 // =====================================
 
 import Clientes from "./pages/Clientes";
-
 import Prospectos from "./pages/Prospectos";
-
 import Propuestas from "./pages/Propuestas";
-
 import Ventas from "./pages/Ventas";
-
 import Alertas from "./pages/Alertas";
-
 import Metricas from "./pages/Metricas";
-
 import RegistrarProspecto from "./pages/RegistrarProspecto";
-
 import CrearPropuesta from "./pages/CrearPropuesta";
 
 
+function App() {
 
-function App(){
-
-return(
+return (
 
 <BrowserRouter>
 
 <Routes>
-
 
 {/* ===================================== */}
 {/* LOGIN */}
@@ -62,7 +50,6 @@ path="/"
 element={<Login/>}
 
 />
-
 
 {/* ===================================== */}
 {/* CAMBIAR PASSWORD */}
@@ -84,7 +71,6 @@ element={
 
 />
 
-
 {/* ===================================== */}
 {/* DASHBOARD */}
 {/* ===================================== */}
@@ -105,7 +91,6 @@ element={
 
 />
 
-
 {/* ===================================== */}
 {/* CLIENTES */}
 {/* ===================================== */}
@@ -116,7 +101,15 @@ path="/clientes"
 
 element={
 
-<RutaProtegida>
+<RutaProtegida
+
+rolesPermitidos={[
+
+"admin"
+
+]}
+
+>
 
 <Clientes/>
 
@@ -125,7 +118,6 @@ element={
 }
 
 />
-
 
 {/* ===================================== */}
 {/* PROSPECTOS */}
@@ -137,7 +129,17 @@ path="/prospectos"
 
 element={
 
-<RutaProtegida>
+<RutaProtegida
+
+rolesPermitidos={[
+
+"admin",
+
+"marketing"
+
+]}
+
+>
 
 <Prospectos/>
 
@@ -146,7 +148,6 @@ element={
 }
 
 />
-
 
 {/* ===================================== */}
 {/* PROPUESTAS */}
@@ -158,7 +159,15 @@ path="/propuestas"
 
 element={
 
-<RutaProtegida>
+<RutaProtegida
+
+rolesPermitidos={[
+
+"admin"
+
+]}
+
+>
 
 <Propuestas/>
 
@@ -167,7 +176,6 @@ element={
 }
 
 />
-
 
 {/* ===================================== */}
 {/* VENTAS */}
@@ -179,7 +187,17 @@ path="/ventas"
 
 element={
 
-<RutaProtegida>
+<RutaProtegida
+
+rolesPermitidos={[
+
+"admin",
+
+"vendedor"
+
+]}
+
+>
 
 <Ventas/>
 
@@ -188,7 +206,6 @@ element={
 }
 
 />
-
 
 {/* ===================================== */}
 {/* ALERTAS */}
@@ -200,7 +217,17 @@ path="/alertas"
 
 element={
 
-<RutaProtegida>
+<RutaProtegida
+
+rolesPermitidos={[
+
+"admin",
+
+"marketing"
+
+]}
+
+>
 
 <Alertas/>
 
@@ -209,7 +236,6 @@ element={
 }
 
 />
-
 
 {/* ===================================== */}
 {/* METRICAS */}
@@ -221,7 +247,17 @@ path="/metricas"
 
 element={
 
-<RutaProtegida>
+<RutaProtegida
+
+rolesPermitidos={[
+
+"admin",
+
+"marketing"
+
+]}
+
+>
 
 <Metricas/>
 
@@ -230,7 +266,6 @@ element={
 }
 
 />
-
 
 {/* ===================================== */}
 {/* REGISTRAR PROSPECTO */}
@@ -242,7 +277,17 @@ path="/registrar"
 
 element={
 
-<RutaProtegida>
+<RutaProtegida
+
+rolesPermitidos={[
+
+"admin",
+
+"vendedor"
+
+]}
+
+>
 
 <RegistrarProspecto/>
 
@@ -251,7 +296,6 @@ element={
 }
 
 />
-
 
 {/* ===================================== */}
 {/* CREAR PROPUESTA */}
@@ -263,7 +307,17 @@ path="/crear-propuesta"
 
 element={
 
-<RutaProtegida>
+<RutaProtegida
+
+rolesPermitidos={[
+
+"admin",
+
+"vendedor"
+
+]}
+
+>
 
 <CrearPropuesta/>
 
@@ -273,7 +327,6 @@ element={
 
 />
 
-
 </Routes>
 
 </BrowserRouter>
@@ -281,6 +334,5 @@ element={
 );
 
 }
-
 
 export default App;

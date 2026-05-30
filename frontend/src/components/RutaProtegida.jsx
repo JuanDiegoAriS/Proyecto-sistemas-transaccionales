@@ -1,16 +1,20 @@
 import { Navigate } from "react-router-dom";
 
+export default function RutaProtegida({
 
-export default function RutaProtegida(
+    children,
 
-    { children }
+    rolesPermitidos = []
 
-){
+}){
 
     const token = localStorage.getItem(
         "token"
     );
 
+    const rol = localStorage.getItem(
+        "rol"
+    );
 
     if(!token){
 
@@ -18,6 +22,21 @@ export default function RutaProtegida(
 
     }
 
+    if(
+
+        rolesPermitidos.length > 0 &&
+
+        !rolesPermitidos.includes(
+            rol
+        )
+
+    ){
+
+        return <Navigate
+            to="/dashboard"
+        />;
+
+    }
 
     return children;
 

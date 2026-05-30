@@ -1,101 +1,99 @@
 import {
+    useEffect,
+    useState
+} from "react";
 
-useEffect,
+import api from "../api";
+import Tabla from "../components/Tabla";
 
-useState
+export default function Propuestas() {
 
-}
+    const [datos, setDatos] = useState([]);
 
-from "react";
+    const cargar = () => {
 
+        api.get("/propuestas")
+            .then(r => setDatos(r.data));
 
-import api
+    };
 
-from "../api";
+    useEffect(() => {
 
-import Tabla
+        cargar();
 
-from "../components/Tabla";
+    }, []);
 
+    const aprobar = async (id) => {
 
+        await api.post(
+            `/aprobarPropuesta/${id}`
+        );
 
-export default function Propuestas(){
+        cargar();
 
+    };
 
-const[
+    const rechazar = async (id) => {
 
-datos,
+        await api.post(
+            `/rechazarPropuesta/${id}`
+        );
 
-setDatos
+        cargar();
 
-]
+    };
 
-=
+    return (
 
-useState([])
+        <Tabla
 
+            titulo="Propuestas"
 
+            datos={datos}
 
-useEffect(
+            columnas={[
+                "propuestaID",
+                "clienteID",
+                "monto",
+                "estado"
+            ]}
 
-()=>{
+            acciones={(fila) => (
 
+                fila.estado === "Pendiente" ? (
 
-api.get(
+                    <>
 
-"/propuestas"
+                        <button
+                            onClick={() =>
+                                aprobar(
+                                    fila.propuestaID
+                                )
+                            }
+                        >
+                            Aprobar
+                        </button>
 
-)
+                        {" "}
 
-.then(
+                        <button
+                            onClick={() =>
+                                rechazar(
+                                    fila.propuestaID
+                                )
+                            }
+                        >
+                            Rechazar
+                        </button>
 
-r=>
+                    </>
 
-setDatos(
+                ) : null
 
-r.data
+            )}
 
-)
+        />
 
-)
-
-},
-
-[]
-
-)
-
-
-
-return(
-
-<Tabla
-
-
-titulo="Propuestas"
-
-
-
-datos={datos}
-
-
-
-columnas={[
-
-"propuestaID",
-
-"clienteID",
-
-"monto",
-
-"estado"
-
-]}
-
-
-/>
-
-)
-
+    );
 
 }

@@ -1,16 +1,54 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
+import api from "../api";
 
-export default function Dashboard(){
+import { Pie } from "react-chartjs-2";
+
+import {
+    Chart as ChartJS,
+    ArcElement,
+    Tooltip,
+    Legend
+} from "chart.js";
+
+ChartJS.register(
+    ArcElement,
+    Tooltip,
+    Legend
+);
+
+export default function Dashboard() {
 
     const navigate = useNavigate();
 
-    const rol = localStorage.getItem(
-        "rol"
-    );
+    const rol = localStorage.getItem("rol");
 
+    const [metricas, setMetricas] = useState({
+        clientes: 0,
+        prospectos: 0,
+        propuestas: 0,
+        ventas: 0,
+        ingresos: 0
+    });
 
-    const cerrarSesion = ()=>{
+    const [graficas, setGraficas] = useState({
+        propuestas: []
+    });
+
+    useEffect(() => {
+
+        api.get("/dashboard")
+            .then(r => setMetricas(r.data))
+            .catch(console.error);
+
+        api.get("/graficas")
+            .then(r => setGraficas(r.data))
+            .catch(console.error);
+
+    }, []);
+
+    const cerrarSesion = () => {
 
         localStorage.clear();
 
@@ -18,502 +56,329 @@ export default function Dashboard(){
 
     };
 
-
-    return(
+    return (
 
         <div
             style={{
-                padding:"40px",
-                fontFamily:"Arial",
-                color:"white",
-                background:"#0f172a",
-                minHeight:"100vh"
+                padding: "40px",
+                fontFamily: "Arial",
+                color: "white",
+                background: "#0f172a",
+                minHeight: "100vh"
             }}
         >
 
-            {/* ================================= */}
-            {/* TITULO */}
-            {/* ================================= */}
-
             <h1
                 style={{
-                    textAlign:"center",
-                    fontSize:"60px"
+                    textAlign: "center",
+                    fontSize: "60px"
                 }}
             >
-
                 CRM
-
             </h1>
 
-
-            <hr/>
-
+            <hr />
 
             <h1
                 style={{
-                    textAlign:"center"
+                    textAlign: "center"
                 }}
             >
-
                 Dashboard Zimbra
-
             </h1>
-
 
             <h2
                 style={{
-                    textAlign:"center"
+                    textAlign: "center"
                 }}
             >
-
                 Bienvenido
-
             </h2>
-
 
             <h3
                 style={{
-                    textAlign:"center"
+                    textAlign: "center"
                 }}
             >
-
-                Rol:
-
-                {rol}
-
+                Rol: {rol}
             </h3>
 
+            <br />
 
-            <br/>
+            {/* ============================= */}
+            {/* MÉTRICAS */}
+            {/* ============================= */}
 
-
-            {/* ================================= */}
-            {/* ADMIN */}
-            {/* ================================= */}
-
-            {
-                rol==="admin" && (
-
-                    <div>
-
-                        <h2>
-
-                            Panel Administrador
-
-                        </h2>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/clientes"
-
-                                )
-
-                            }
-
-                        >
-
-                            Clientes
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/prospectos"
-
-                                )
-
-                            }
-
-                        >
-
-                            Prospectos
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/propuestas"
-
-                                )
-
-                            }
-
-                        >
-
-                            Propuestas
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/ventas"
-
-                                )
-
-                            }
-
-                        >
-
-                            Ventas
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/alertas"
-
-                                )
-
-                            }
-
-                        >
-
-                            Alertas
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/metricas"
-
-                                )
-
-                            }
-
-                        >
-
-                            Métricas
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/registrar"
-
-                                )
-
-                            }
-
-                        >
-
-                            Registrar Prospecto
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/crear-propuesta"
-
-                                )
-
-                            }
-
-                        >
-
-                            Crear Propuesta
-
-                        </button>
-
-                    </div>
-
-                )
-            }
-
-
-            {/* ================================= */}
-            {/* MARKETING */}
-            {/* ================================= */}
-
-            {
-                rol==="marketing" && (
-
-                    <div>
-
-                        <h2>
-
-                            Panel Marketing
-
-                        </h2>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/prospectos"
-
-                                )
-
-                            }
-
-                        >
-
-                            Prospectos
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/metricas"
-
-                                )
-
-                            }
-
-                        >
-
-                            Métricas
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/alertas"
-
-                                )
-
-                            }
-
-                        >
-
-                            Alertas
-
-                        </button>
-
-                    </div>
-
-                )
-            }
-
-
-            {/* ================================= */}
-            {/* VENDEDOR */}
-            {/* ================================= */}
-
-            {
-                rol==="vendedor" && (
-
-                    <div>
-
-                        <h2>
-
-                            Panel Vendedor
-
-                        </h2>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/registrar"
-
-                                )
-
-                            }
-
-                        >
-
-                            Registrar Prospecto
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/crear-propuesta"
-
-                                )
-
-                            }
-
-                        >
-
-                            Crear Propuesta
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/ventas"
-
-                                )
-
-                            }
-
-                        >
-
-                            Ventas
-
-                        </button>
-
-
-                        <br/>
-                        <br/>
-
-
-                        <button
-
-                            onClick={()=>
-
-                                navigate(
-
-                                    "/alertas"
-
-                                )
-
-                            }
-
-                        >
-
-                            Alertas
-
-                        </button>
-
-                    </div>
-
-                )
-            }
-
-
-            <br/>
-            <br/>
-
-
-            {/* ================================= */}
-            {/* LOGOUT */}
-            {/* ================================= */}
-
-            <button
-
-                onClick={cerrarSesion}
-
+            <div
                 style={{
-
-                    background:"red",
-
-                    color:"white",
-
-                    padding:"10px",
-
-                    border:"none",
-
-                    cursor:"pointer"
-
+                    display: "grid",
+                    gridTemplateColumns:
+                        "repeat(auto-fit,minmax(220px,1fr))",
+                    gap: "20px",
+                    marginBottom: "40px"
                 }}
-
             >
 
-                Cerrar Sesión
+                <div
+                    style={{
+                        background: "#1e293b",
+                        padding: "20px",
+                        borderRadius: "12px"
+                    }}
+                >
+                    <h3>Clientes</h3>
+                    <h1>{metricas.clientes}</h1>
+                </div>
 
+                <div
+                    style={{
+                        background: "#1e293b",
+                        padding: "20px",
+                        borderRadius: "12px"
+                    }}
+                >
+                    <h3>Prospectos</h3>
+                    <h1>{metricas.prospectos}</h1>
+                </div>
+
+                <div
+                    style={{
+                        background: "#1e293b",
+                        padding: "20px",
+                        borderRadius: "12px"
+                    }}
+                >
+                    <h3>Propuestas</h3>
+                    <h1>{metricas.propuestas}</h1>
+                </div>
+
+                <div
+                    style={{
+                        background: "#1e293b",
+                        padding: "20px",
+                        borderRadius: "12px"
+                    }}
+                >
+                    <h3>Ventas</h3>
+                    <h1>{metricas.ventas}</h1>
+                </div>
+
+                <div
+                    style={{
+                        background: "#1e293b",
+                        padding: "20px",
+                        borderRadius: "12px"
+                    }}
+                >
+                    <h3>Ingresos</h3>
+                    <h1>${metricas.ingresos}</h1>
+                </div>
+
+            </div>
+
+            {/* ============================= */}
+            {/* GRÁFICA */}
+            {/* ============================= */}
+
+            <div
+                style={{
+                    background: "#1e293b",
+                    padding: "20px",
+                    borderRadius: "12px",
+                    marginBottom: "40px"
+                }}
+            >
+
+                <h2
+                    style={{
+                        textAlign: "center"
+                    }}
+                >
+                    Estado de Propuestas
+                </h2>
+
+                <div
+                    style={{
+                        maxWidth: "500px",
+                        margin: "0 auto"
+                    }}
+                >
+
+                    <Pie
+                        data={{
+                            labels:
+                                graficas.propuestas.map(
+                                    p => p.estado
+                                ),
+                            datasets: [
+{
+    label: "Propuestas",
+
+    data:
+        graficas.propuestas.map(
+            p => p.cantidad
+        ),
+
+    backgroundColor: [
+
+        "#22c55e", // Aprobada
+
+        "#f59e0b", // Pendiente
+
+        "#ef4444", // Rechazada
+
+        "#3b82f6", // Negociacion
+
+        "#8b5cf6"  // Extra
+
+    ],
+
+    borderColor: "#ffffff",
+
+    borderWidth: 2
+
+}
+]
+                        }}
+                    />
+
+                </div>
+
+            </div>
+
+            {/* ============================= */}
+            {/* ADMIN */}
+            {/* ============================= */}
+
+            {rol === "admin" && (
+
+                <div>
+
+                    <h2>Panel Administrador</h2>
+
+                    <button onClick={() => navigate("/clientes")}>
+                        Clientes
+                    </button>
+
+                    <br /><br />
+
+                    <button onClick={() => navigate("/prospectos")}>
+                        Prospectos
+                    </button>
+
+                    <br /><br />
+
+                    <button onClick={() => navigate("/propuestas")}>
+                        Propuestas
+                    </button>
+
+                    <br /><br />
+
+                    <button onClick={() => navigate("/ventas")}>
+                        Ventas
+                    </button>
+
+                    <br /><br />
+
+                    <button onClick={() => navigate("/alertas")}>
+                        Alertas
+                    </button>
+
+                    <br /><br />
+
+                    <button onClick={() => navigate("/metricas")}>
+                        Métricas
+                    </button>
+
+                    <br /><br />
+
+                    <button onClick={() => navigate("/registrar")}>
+                        Registrar Prospecto
+                    </button>
+
+                    <br /><br />
+
+                    <button onClick={() => navigate("/crear-propuesta")}>
+                        Crear Propuesta
+                    </button>
+
+                </div>
+
+            )}
+
+            {/* ============================= */}
+            {/* MARKETING */}
+            {/* ============================= */}
+
+            {rol === "marketing" && (
+
+                <div>
+
+                    <h2>Panel Marketing</h2>
+
+                    <button onClick={() => navigate("/prospectos")}>
+                        Prospectos
+                    </button>
+
+                    <br /><br />
+
+                    <button onClick={() => navigate("/metricas")}>
+                        Métricas
+                    </button>
+
+                    <br /><br />
+
+                    <button onClick={() => navigate("/alertas")}>
+                        Alertas
+                    </button>
+
+                </div>
+
+            )}
+
+            {/* ============================= */}
+            {/* VENDEDOR */}
+            {/* ============================= */}
+
+            {rol === "vendedor" && (
+
+                <div>
+
+                    <h2>Panel Vendedor</h2>
+
+                    <button onClick={() => navigate("/registrar")}>
+                        Registrar Prospecto
+                    </button>
+
+                    <br /><br />
+
+                    <button onClick={() => navigate("/crear-propuesta")}>
+                        Crear Propuesta
+                    </button>
+
+                    <br /><br />
+
+                    <button onClick={() => navigate("/ventas")}>
+                        Ventas
+                    </button>
+
+                </div>
+
+            )}
+
+            <br /><br />
+
+            <button
+                onClick={cerrarSesion}
+                style={{
+                    background: "red",
+                    color: "white",
+                    padding: "10px",
+                    border: "none",
+                    cursor: "pointer"
+                }}
+            >
+                Cerrar Sesión
             </button>
 
         </div>

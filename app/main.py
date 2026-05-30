@@ -25,6 +25,11 @@ from fastapi import FastAPI
 
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.routes.vendedores import router as vendedores_router
+
+from app.routes.dashboard import router as dashboard_router
+
+from app.routes.graficas import router as graficas_router
 
 app = FastAPI()
 
@@ -79,6 +84,14 @@ app.include_router(
     login_router
 )
 
+app.include_router(
+    graficas_router
+)
+
+app.include_router(
+    dashboard_router
+)
+
 app.add_middleware(
 
     CORSMiddleware,
@@ -93,7 +106,9 @@ app.add_middleware(
 
 )
 
-
+app.include_router(
+    vendedores_router
+)
 
 ###################################
 # CONSULTAS

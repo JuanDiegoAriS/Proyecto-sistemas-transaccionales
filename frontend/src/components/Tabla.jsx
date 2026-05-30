@@ -4,32 +4,62 @@ titulo,
 
 datos,
 
-columnas
+columnas,
+
+acciones
 
 }){
 
-
 return(
 
-<>
+<div
 
+style={{
 
-<h1>
+maxWidth:"1200px",
+
+margin:"0 auto",
+
+padding:"20px"
+
+}}
+
+>
+
+<h1
+
+style={{
+
+textAlign:"center",
+
+marginBottom:"20px"
+
+}}
+
+>
 
 {titulo}
 
 </h1>
 
 
+<table
 
-<table>
+style={{
 
+width:"100%",
+
+borderCollapse:"collapse",
+
+textAlign:"center"
+
+}}
+
+>
 
 <thead>
 
-
 <tr>
-
 
 {
 
@@ -37,7 +67,19 @@ columnas.map(
 
 col=>
 
-<th key={col}>
+<th
+
+key={col}
+
+style={{
+
+padding:"12px",
+
+borderBottom:"1px solid #444"
+
+}}
+
+>
 
 {col}
 
@@ -48,16 +90,24 @@ col=>
 }
 
 
-</tr>
+{
 
+acciones &&
+
+<th>
+
+Acciones
+
+</th>
+
+}
+
+</tr>
 
 </thead>
 
 
-
-
 <tbody>
-
 
 {
 
@@ -71,9 +121,7 @@ i
 
 )=>(
 
-
 <tr key={i}>
-
 
 {
 
@@ -81,7 +129,17 @@ columnas.map(
 
 col=>
 
-<td key={col}>
+<td
+
+key={col}
+
+style={{
+
+padding:"10px"
+
+}}
+
+>
 
 {
 
@@ -100,6 +158,25 @@ fila[col]
 }
 
 
+{
+
+acciones &&
+
+<td>
+
+{
+
+acciones(
+
+fila
+
+)
+
+}
+
+</td>
+
+}
 
 </tr>
 
@@ -107,22 +184,14 @@ fila[col]
 
 )
 
-
 }
-
 
 </tbody>
 
-
-
 </table>
 
-
-
-</>
+</div>
 
 )
-
-
 
 }
