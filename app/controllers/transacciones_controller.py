@@ -10,21 +10,21 @@ def ejecutar(sql, params):
     try:
 
         cursor.execute(
-
             sql,
-
             params
-
         )
+
+        resultado = cursor.fetchone()
 
         conexion.commit()
 
+        if resultado:
+
+            return resultado
+
         return {
-
             "mensaje":
-
             "Operacion exitosa"
-
         }
 
     except Exception as e:
@@ -32,11 +32,8 @@ def ejecutar(sql, params):
         conexion.rollback()
 
         return {
-
             "error":
-
             str(e)
-
         }
 
     finally:
