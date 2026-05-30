@@ -29,7 +29,7 @@ export default function RegistrarProspecto() {
         try {
 
             const clientesRes = await api.get(
-                "/clientes"
+                "/clientes-disponibles"
             );
 
             const vendedoresRes = await api.get(

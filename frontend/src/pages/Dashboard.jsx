@@ -330,6 +330,9 @@ export default function Dashboard() {
 
                     <button onClick={() => navigate("/metricas")}>Métricas</button>
                     <br /><br />
+                    
+                    <button onClick={()=>navigate("/registrar-cliente")}>Registrar Cliente</button>
+                    <br/><br/>
 
                     <button onClick={() => navigate("/registrar")}>Registrar Prospecto</button>
                     <br /><br />
@@ -397,7 +400,9 @@ export default function Dashboard() {
             </button>
 
         </div>
+        
 
     );
+
 
 }

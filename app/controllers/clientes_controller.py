@@ -7,7 +7,6 @@ def obtenerClientes():
 
     cursor = conexion.cursor()
 
-
     cursor.execute("""
 
         SELECT *
@@ -16,11 +15,113 @@ def obtenerClientes():
 
     """)
 
-
     datos = cursor.fetchall()
-
 
     conexion.close()
 
+    return datos
+
+
+def obtenerClientesDisponibles():
+
+    conexion = conectar()
+
+    cursor = conexion.cursor()
+
+    cursor.execute("""
+
+        SELECT
+
+        c.*
+
+        FROM Clientes c
+
+        LEFT JOIN Prospectos p
+
+        ON c.clienteID = p.clienteID
+
+        WHERE p.clienteID IS NULL
+
+        ORDER BY c.clienteID
+
+    """)
+
+    datos = cursor.fetchall()
+
+    conexion.close()
 
     return datos
+
+
+def registrarCliente(data):
+
+    conexion = conectar()
+
+    cursor = conexion.cursor()
+
+    try:
+
+        cursor.execute("""
+
+            INSERT INTO Clientes(
+
+                nombres,
+                apellidos,
+                email,
+                telefono,
+                empresa,
+                cargo,
+                clientePago
+
+            )
+
+            VALUES(
+
+                %s,
+                %s,
+                %s,
+                %s,
+                %s,
+                %s,
+                0
+
+            )
+
+        """,
+
+        (
+
+            data.nombres,
+            data.apellidos,
+            data.email,
+            data.telefono,
+            data.empresa,
+            data.cargo
+
+        ))
+
+        conexion.commit()
+
+        return {
+
+            "mensaje":
+
+            "Cliente registrado correctamente"
+
+        }
+
+    except Exception as e:
+
+        conexion.rollback()
+
+        return {
+
+            "error":
+
+            str(e)
+
+        }
+
+    finally:
+
+        conexion.close()

@@ -29,7 +29,7 @@ import Alertas from "./pages/Alertas";
 import Metricas from "./pages/Metricas";
 import RegistrarProspecto from "./pages/RegistrarProspecto";
 import CrearPropuesta from "./pages/CrearPropuesta";
-
+import RegistrarCliente from "./pages/RegistrarCliente";
 
 function App() {
 
@@ -42,6 +42,34 @@ return (
 {/* ===================================== */}
 {/* LOGIN */}
 {/* ===================================== */}
+
+<Route
+
+path="/registrar-cliente"
+
+element={
+
+<RutaProtegida
+
+rolesPermitidos={[
+
+"admin",
+
+"marketing",
+
+"vendedor"
+
+]}
+
+>
+
+<RegistrarCliente/>
+
+</RutaProtegida>
+
+}
+
+/>
 
 <Route
 
