@@ -3,19 +3,27 @@ import { useEffect, useState } from "react";
 
 import api from "../api";
 
-import { Pie } from "react-chartjs-2";
+import { Pie, Bar } from "react-chartjs-2";
 
 import {
     Chart as ChartJS,
     ArcElement,
     Tooltip,
-    Legend
+    Legend,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title
 } from "chart.js";
 
 ChartJS.register(
     ArcElement,
     Tooltip,
-    Legend
+    Legend,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title
 );
 
 export default function Dashboard() {
@@ -33,7 +41,8 @@ export default function Dashboard() {
     });
 
     const [graficas, setGraficas] = useState({
-        propuestas: []
+        propuestas: [],
+        ventas: []
     });
 
     useEffect(() => {
@@ -105,9 +114,7 @@ export default function Dashboard() {
 
             <br />
 
-            {/* ============================= */}
-            {/* MÉTRICAS */}
-            {/* ============================= */}
+            {/* KPI */}
 
             <div
                 style={{
@@ -176,9 +183,7 @@ export default function Dashboard() {
 
             </div>
 
-            {/* ============================= */}
-            {/* GRÁFICA */}
-            {/* ============================= */}
+            {/* PIE CHART */}
 
             <div
                 style={{
@@ -207,38 +212,32 @@ export default function Dashboard() {
                     <Pie
                         data={{
                             labels:
-                                graficas.propuestas.map(
+                                (graficas.propuestas || []).map(
                                     p => p.estado
                                 ),
+
                             datasets: [
-{
-    label: "Propuestas",
+                                {
+                                    label: "Propuestas",
 
-    data:
-        graficas.propuestas.map(
-            p => p.cantidad
-        ),
+                                    data:
+                                        (graficas.propuestas || []).map(
+                                            p => p.cantidad
+                                        ),
 
-    backgroundColor: [
+                                    backgroundColor: [
+                                        "#22c55e",
+                                        "#f59e0b",
+                                        "#ef4444",
+                                        "#3b82f6",
+                                        "#8b5cf6"
+                                    ],
 
-        "#22c55e", // Aprobada
+                                    borderColor: "#ffffff",
 
-        "#f59e0b", // Pendiente
-
-        "#ef4444", // Rechazada
-
-        "#3b82f6", // Negociacion
-
-        "#8b5cf6"  // Extra
-
-    ],
-
-    borderColor: "#ffffff",
-
-    borderWidth: 2
-
-}
-]
+                                    borderWidth: 2
+                                }
+                            ]
                         }}
                     />
 
@@ -246,9 +245,67 @@ export default function Dashboard() {
 
             </div>
 
-            {/* ============================= */}
+            {/* BAR CHART */}
+
+            <div
+                style={{
+                    background: "#1e293b",
+                    padding: "20px",
+                    borderRadius: "12px",
+                    marginBottom: "40px"
+                }}
+            >
+
+                <h2
+                    style={{
+                        textAlign: "center"
+                    }}
+                >
+                    Ventas por Mes
+                </h2>
+
+                <Bar
+                    data={{
+                        labels:
+                            (graficas.ventas || []).map(v => {
+
+                                const meses = [
+                                    "Ene",
+                                    "Feb",
+                                    "Mar",
+                                    "Abr",
+                                    "May",
+                                    "Jun",
+                                    "Jul",
+                                    "Ago",
+                                    "Sep",
+                                    "Oct",
+                                    "Nov",
+                                    "Dic"
+                                ];
+
+                                return meses[v.mes - 1];
+
+                            }),
+
+                        datasets: [
+                            {
+                                label: "Ventas",
+
+                                data:
+                                    (graficas.ventas || []).map(
+                                        v => v.cantidad
+                                    ),
+
+                                backgroundColor: "#3b82f6"
+                            }
+                        ]
+                    }}
+                />
+
+            </div>
+
             {/* ADMIN */}
-            {/* ============================= */}
 
             {rol === "admin" && (
 
@@ -256,59 +313,34 @@ export default function Dashboard() {
 
                     <h2>Panel Administrador</h2>
 
-                    <button onClick={() => navigate("/clientes")}>
-                        Clientes
-                    </button>
-
+                    <button onClick={() => navigate("/clientes")}>Clientes</button>
                     <br /><br />
 
-                    <button onClick={() => navigate("/prospectos")}>
-                        Prospectos
-                    </button>
-
+                    <button onClick={() => navigate("/prospectos")}>Prospectos</button>
                     <br /><br />
 
-                    <button onClick={() => navigate("/propuestas")}>
-                        Propuestas
-                    </button>
-
+                    <button onClick={() => navigate("/propuestas")}>Propuestas</button>
                     <br /><br />
 
-                    <button onClick={() => navigate("/ventas")}>
-                        Ventas
-                    </button>
-
+                    <button onClick={() => navigate("/ventas")}>Ventas</button>
                     <br /><br />
 
-                    <button onClick={() => navigate("/alertas")}>
-                        Alertas
-                    </button>
-
+                    <button onClick={() => navigate("/alertas")}>Alertas</button>
                     <br /><br />
 
-                    <button onClick={() => navigate("/metricas")}>
-                        Métricas
-                    </button>
-
+                    <button onClick={() => navigate("/metricas")}>Métricas</button>
                     <br /><br />
 
-                    <button onClick={() => navigate("/registrar")}>
-                        Registrar Prospecto
-                    </button>
-
+                    <button onClick={() => navigate("/registrar")}>Registrar Prospecto</button>
                     <br /><br />
 
-                    <button onClick={() => navigate("/crear-propuesta")}>
-                        Crear Propuesta
-                    </button>
+                    <button onClick={() => navigate("/crear-propuesta")}>Crear Propuesta</button>
 
                 </div>
 
             )}
 
-            {/* ============================= */}
             {/* MARKETING */}
-            {/* ============================= */}
 
             {rol === "marketing" && (
 
@@ -316,29 +348,19 @@ export default function Dashboard() {
 
                     <h2>Panel Marketing</h2>
 
-                    <button onClick={() => navigate("/prospectos")}>
-                        Prospectos
-                    </button>
-
+                    <button onClick={() => navigate("/prospectos")}>Prospectos</button>
                     <br /><br />
 
-                    <button onClick={() => navigate("/metricas")}>
-                        Métricas
-                    </button>
-
+                    <button onClick={() => navigate("/metricas")}>Métricas</button>
                     <br /><br />
 
-                    <button onClick={() => navigate("/alertas")}>
-                        Alertas
-                    </button>
+                    <button onClick={() => navigate("/alertas")}>Alertas</button>
 
                 </div>
 
             )}
 
-            {/* ============================= */}
             {/* VENDEDOR */}
-            {/* ============================= */}
 
             {rol === "vendedor" && (
 
@@ -346,27 +368,20 @@ export default function Dashboard() {
 
                     <h2>Panel Vendedor</h2>
 
-                    <button onClick={() => navigate("/registrar")}>
-                        Registrar Prospecto
-                    </button>
-
+                    <button onClick={() => navigate("/registrar")}>Registrar Prospecto</button>
                     <br /><br />
 
-                    <button onClick={() => navigate("/crear-propuesta")}>
-                        Crear Propuesta
-                    </button>
-
+                    <button onClick={() => navigate("/crear-propuesta")}>Crear Propuesta</button>
                     <br /><br />
 
-                    <button onClick={() => navigate("/ventas")}>
-                        Ventas
-                    </button>
+                    <button onClick={() => navigate("/ventas")}>Ventas</button>
 
                 </div>
 
             )}
 
-            <br /><br />
+            <br />
+            <br />
 
             <button
                 onClick={cerrarSesion}

@@ -7,15 +7,15 @@ def obtenerGraficas():
 
     cursor = conexion.cursor()
 
-    # ==========================
-    # PROPUESAS POR ESTADO
-    # ==========================
+    # =====================================
+    # PROPUESTAS POR ESTADO
+    # =====================================
 
     cursor.execute("""
 
         SELECT
 
-        estado,
+        COALESCE(estado,'Pendiente') estado,
 
         COUNT(*) cantidad
 
@@ -27,10 +27,34 @@ def obtenerGraficas():
 
     propuestas = cursor.fetchall()
 
+    # =====================================
+    # VENTAS POR MES
+    # =====================================
+
+    cursor.execute("""
+
+        SELECT
+
+        MONTH(fechaVenta) mes,
+
+        COUNT(*) cantidad
+
+        FROM Ventas_Cerradas
+
+        GROUP BY MONTH(fechaVenta)
+
+        ORDER BY MONTH(fechaVenta)
+
+    """)
+
+    ventas = cursor.fetchall()
+
     conexion.close()
 
     return {
 
-        "propuestas": propuestas
+        "propuestas": propuestas,
+
+        "ventas": ventas
 
     }
